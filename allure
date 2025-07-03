@@ -1,0 +1,24 @@
+wget https://repo1.maven.org/maven2/io/qameta/allure/allure-maven/2.15.2/allure-maven-2.15.2.jar
+wget https://repo1.maven.org/maven2/io/qameta/allure/allure-maven/2.15.2/allure-maven-2.15.2.pom
+
+mvn install:install-file \
+  -Dfile=allure-maven-2.15.2.jar \
+  -DpomFile=allure-maven-2.15.2.pom
+
+mvn io.qameta.allure:allure-maven:2.15.2:report
+
+<plugin>
+      <groupId>io.qameta.allure</groupId>
+      <artifactId>allure-maven</artifactId>
+      <version>2.15.2</version>
+      <configuration>
+        <reportVersion>2.34.1</reportVersion>
+      </configuration>
+      <executions>
+        <execution>
+          <id>allure-report</id>
+          <phase>verify</phase>
+          <goals><goal>report</goal></goals>
+        </execution>
+      </executions>
+    </plugin>
