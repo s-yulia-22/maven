@@ -1,0 +1,5 @@
+Was ist der Unterschied zwischen AI und Machine Learning?
+Erkläre den Begriff Datenanalyse.
+Wie funktioniert ein neuronales Netz?
+Was bedeutet Overfitting in der Statistik?
+Nenne drei Anwendungen von künstlicher Intelligenz im Alltag.
