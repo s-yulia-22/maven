@@ -22,7 +22,20 @@ mvn io.qameta.allure:allure-maven:2.15.2:report
         </execution>
       </executions>
     </plugin>
-
+<executions>
+        <execution>
+            <id>generate-cucumber-html-report</id>
+            <phase>verify</phase>
+            <goals>
+                <goal>generate</goal>
+            </goals>
+            <configuration>
+                <projectName>AI-Test</projectName>
+                <outputDirectory>${project.build.directory}/cucumber-reports</outputDirectory>
+                <cucumberOutput>${project.build.directory}/cucumber.json</cucumberOutput>
+            </configuration>
+        </execution>
+    </executions>
 
 <configuration>
     <reportVersion>2.24.0</reportVersion> <!-- или твоя версия CLI -->
