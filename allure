@@ -22,3 +22,19 @@ mvn io.qameta.allure:allure-maven:2.15.2:report
         </execution>
       </executions>
     </plugin>
+
+
+<configuration>
+    <reportVersion>2.24.0</reportVersion> <!-- или твоя версия CLI -->
+    <resultsDirectory>${project.build.directory}/allure-results</resultsDirectory>
+    <reportDirectory>${project.build.directory}/allure-report</reportDirectory>
+  </configuration>
+  <executions>
+    <execution>
+      <id>allure-report</id>
+      <phase>verify</phase>
+      <goals>
+        <goal>report</goal>
+      </goals>
+    </execution>
+  </executions>
