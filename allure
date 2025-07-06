@@ -1,101 +1,19 @@
-Was ist dein Lieblingsessen?
-Wie wird das Wetter morgen?
-Erzähl mir einen Witz.
-Was bedeutet Glück?
-Wie kocht man Spaghetti?
-Was ist Liebe?
-Wie kann man Stress reduzieren?
-Erzähl mir etwas über Katzen.
-Wie beginnt man den Tag positiv?
-Was ist gesunde Ernährung?
-Welche Filme sind sehenswert?
-Was kann man gegen Langeweile tun?
-Wie finde ich Motivation?
-Was ist ein gutes Hobby?
-Wie lernt man besser?
-Was sind interessante Fakten über Tiere?
-Wie funktioniert ein Regenbogen?
-Warum ist der Himmel blau?
-Was macht eine gute Freundschaft aus?
-Wie schreibt man ein Tagebuch?
-Was kann ich heute unternehmen?
-Wie kann ich besser schlafen?
-Was ist Achtsamkeit?
-Wie tröstet man jemanden?
-Was ist der Sinn des Lebens?
-Wie kann man produktiver sein?
-Was hilft bei Kopfschmerzen?
-Wie kann ich mich besser konzentrieren?
-Was sind schöne Urlaubsziele?
-Wie kann ich sparen?
-Was ist ein gutes Buch zum Lesen?
-Wie kann ich neue Leute kennenlernen?
-Was hilft bei schlechter Laune?
-Wie wird man selbstbewusster?
-Was kann ich jemandem zum Geburtstag schenken?
-Wie lernt man eine neue Sprache?
-Was sind gute Podcasts?
-Wie kann man nachhaltiger leben?
-Was ist eine Bucket List?
-Wie bastelt man eine Karte?
-Was ist ein gutes Frühstück?
-Wie funktioniert Meditation?
-Was ist ein Mantra?
-Wie kann man sich organisieren?
-Was kann man mit Kindern spielen?
-Wie kann ich weniger am Handy sein?
-Was ist ein guter Film für den Abend?
-Wie kann man kreativ sein?
-Was ist eine schöne Geste?
-Wie verbringt man einen regnerischen Tag?
-Was sind einfache Rezepte?
-Was ist ein guter Vorsatz?
-Wie kann man Konflikte lösen?
-Wie finde ich neue Ideen?
-Was ist ein gutes Spiel für Gruppen?
-Wie beginnt man mit Yoga?
-Was ist Dankbarkeit?
-Wie schreibt man einen Brief?
-Was ist gute Kommunikation?
-Wie lernt man zeichnen?
-Wie kann man achtsamer leben?
-Was ist wichtig in einer Beziehung?
-Wie kann man Geduld üben?
-Was kann man verschenken, das nichts kostet?
-Wie findet man innere Ruhe?
-Was sind schöne Rituale am Abend?
-Wie dekoriert man gemütlich?
-Was ist dein Lieblingstier?
-Wie bastelt man einen Papierflieger?
-Was ist ein gutes Rätsel?
-Wie kann ich jemandem Mut machen?
-Was kann man im Wald machen?
-Wie malt man ein Herz?
-Was ist ein guter Witz?
-Wie kann man sich selbst lieben lernen?
-Was ist eine schöne Erinnerung?
-Wie plant man einen Ausflug?
-Was hilft bei Prüfungsangst?
-Wie kann ich Ordnung halten?
-Was bedeutet Freundlichkeit?
-Wie kann man helfen?
-Was ist ein schönes Lied?
-Wie kann man besser zuhören?
-Was macht dich glücklich?
-Wie kann ich heute jemandem eine Freude machen?
-Was ist eine gute Idee für ein Geschenk?
-Wie pflanzt man eine Blume?
-Was ist ein Lieblingsmoment?
-Wie kann ich entspannen?
-Was ist ein schöner Ort in der Natur?
-Wie fühlt sich Freude an?
-Was sind gute Vorsätze fürs neue Jahr?
-Wie kann ich besser planen?
-Was ist ein schönes Familienritual?
-Wie schreibt man ein Gedicht?
-Was ist eine kleine Aufmerksamkeit?
-Wie kann ich achtsam frühstücken?
-Was ist ein schönes Zitat?
-Wie kann ich achtsamer atmen?
-Was bedeutet Heimat?
-Wie kann ich jemandem Danke sagen?
+for (WebElement card : cards) {
+    try {
+        WebElement cardHeader = card.findElement(By.cssSelector("h5.card-title span"));
+        System.out.println("Title: " + cardHeader.getText());
+
+        if (cardHeader.getText().contains(title)) {
+            System.out.println("App was found");
+            WebElement startButton = card.findElement(By.cssSelector("button[data-bs-title='Start App']"));
+            wait.until(ExpectedConditions.elementToBeClickable(startButton)).click();
+            System.out.println("App was clicked");
+            return; // теперь всё ок – выйдем только если нашли
+        }
+
+    } catch (NoSuchElementException e) {
+        System.out.println("Header or button not found in one of the cards");
+        // можно продолжать — это нормально
+    }
+}
+throw new NoSuchElementException("App with title '" + title + "' not found.");
