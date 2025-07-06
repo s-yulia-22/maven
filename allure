@@ -1,2 +1,17 @@
-byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-            Allure.addAttachment("Failure Screenshot", new ByteArrayInputStream(screenshot));
+@smoke-test
+  Scenario: Login fails with incorrect username  
+    Given I open the KN login page  
+    When I click the button "Mit Keycloak anmelden"  
+    And I click the button "Fortfahren"  
+    And I enter incorrect username  
+    And I enter correct password  
+    Then I should see an error message about invalid credentials  
+
+  @smoke-test
+  Scenario: Login fails with incorrect password  
+    Given I open the KN login page  
+    When I click the button "Mit Keycloak anmelden"  
+    And I click the button "Fortfahren"  
+    And I enter correct username  
+    And I enter incorrect password  
+    Then I should see an error message about invalid credentials
