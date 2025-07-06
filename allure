@@ -1,17 +1,33 @@
-@smoke-test
+Feature: Login to Knowledge Navigator
+
+  As a user  
+  I want to log in to Knowledge Navigator  
+  So that I can access the application homepage  
+
+  @smoke-test
+  Scenario: Successful login with Keycloak  
+    Given the user opens the KN login page  
+    When the user clicks the button "Mit Keycloak anmelden"  
+    And the user clicks the button "Fortfahren"  
+    And the user enters a valid username  
+    And the user enters a valid password  
+    And the user confirms the stay signed in prompt  
+    Then the user should see the Knowledge Navigator homepage  
+
+  @smoke-test
   Scenario: Login fails with incorrect username  
-    Given I open the KN login page  
-    When I click the button "Mit Keycloak anmelden"  
-    And I click the button "Fortfahren"  
-    And I enter incorrect username  
-    And I enter correct password  
-    Then I should see an error message about invalid credentials  
+    Given the user opens the KN login page  
+    When the user clicks the button "Mit Keycloak anmelden"  
+    And the user clicks the button "Fortfahren"  
+    And the user enters an invalid username  
+    And the user enters a valid password  
+    Then the user should see an error message about invalid credentials  
 
   @smoke-test
   Scenario: Login fails with incorrect password  
-    Given I open the KN login page  
-    When I click the button "Mit Keycloak anmelden"  
-    And I click the button "Fortfahren"  
-    And I enter correct username  
-    And I enter incorrect password  
-    Then I should see an error message about invalid credentials
+    Given the user opens the KN login page  
+    When the user clicks the button "Mit Keycloak anmelden"  
+    And the user clicks the button "Fortfahren"  
+    And the user enters a valid username  
+    And the user enters an invalid password  
+    Then the user should see an error message about invalid credentials
