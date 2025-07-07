@@ -1,9 +1,64 @@
-public boolean isInvalidCredentialsErrorVisible() {
-    try {
-        wait.until(ExpectedConditions.visibilityOf(usernameErrorMessage));
-        return usernameErrorMessage.isDisplayed()
-               && usernameErrorMessage.getText().contains("Kein Konto mit diesem Benutzernamen gefunden");
-    } catch (TimeoutException e) {
-        return false;
-    }
-}
+Feature: Smoke Test for Knowledge Navigator
+
+  As a user
+  I want to verify that the core functionalities of Knowledge Navigator work correctly
+  So that I can access, interact with, and log out of the system successfully
+
+  @smoke-test
+  Scenario: Successful login with valid credentials
+    Given the user opens the login page
+    When the user clicks the "Mit Keycloak anmelden" button
+    And the user clicks the "Fortfahren" button
+    And the user enters a valid username
+    And the user enters a valid password
+    And the user confirms the stay signed in prompt
+    Then the user should see the Knowledge Navigator homepage
+
+  @smoke-test
+  Scenario: Login fails with invalid username
+    Given the user opens the login page
+    When the user clicks the "Mit Keycloak anmelden" button
+    And the user clicks the "Fortfahren" button
+    And the user enters an invalid username
+    And the user enters a valid password
+    Then the user should see an error message about invalid credentials
+
+  @smoke-test
+  Scenario: Login fails with invalid password
+    Given the user opens the login page
+    When the user clicks the "Mit Keycloak anmelden" button
+    And the user clicks the "Fortfahren" button
+    And the user enters a valid username
+    And the user enters an invalid password
+    Then the user should see an error message about invalid credentials
+
+  @smoke-test
+  Scenario: Successful logout
+    Given the user is logged into the system
+    When the user clicks on the profile dropdown
+    And the user clicks on the "Ausloggen" option
+    Then the user should be redirected to the login page
+
+  @smoke-test
+  Scenario: Application "Bilderzeuger" responds to prompts
+    Given the user is logged into the system
+    When the user opens the app "Bilderzeuger"
+    Then the user sends 2 test prompts and verifies responses
+
+  @smoke-test
+  Scenario: Application "Einfacher Assistent" responds to prompts
+    Given the user is logged into the system
+    When the user opens the app "Einfacher Assistent"
+    Then the user sends 2 test prompts and verifies responses
+
+  @smoke-test
+  Scenario: Application "RoXtra Test" responds to prompts
+    Given the user is logged into the system
+    When the user opens the app "RoXtra Test"
+    Then the user sends 2 test prompts and verifies responses
+
+  @smoke-test
+  Scenario: Application "Transcriber" responds to prompts
+    Given the user is logged into the system
+    When the user opens the app "Transcriber"
+    Then the user sends 2 test prompts and verifies responses
