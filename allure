@@ -1,41 +1,104 @@
-@FindBy(css = "a[role='button'][data-bs-toggle='dropdown']") // кнопка с аватаркой
-private WebElement userMenuButton;
-
-@FindBy(xpath = "//a[text()='Ausloggen']") // кнопка Ausloggen
-private WebElement logoutButton;
-
-public void clickUserMenu() {
-    wait.until(ExpectedConditions.elementToBeClickable(userMenuButton)).click();
-}
-
-public void clickLogout(String buttonLabel) {
-    wait.until(ExpectedConditions.elementToBeClickable(logoutButton)).click();
-}
-//////////////////
-
-@When("the user opens the user menu")
-public void openUserMenu() {
-    homePage.clickUserMenu();
-}
-
-@And("the user clicks the {string} button")
-public void clickLogoutButton(String buttonLabel) {
-    homePage.clickLogout(buttonLabel);
-}
-
-@Then("the user should see the login page")
-public void verifyRedirectToLogin() {
-    Assert.assertTrue(loginPage.isLoginPageDisplayed());
-}
-
-
-//////////////////
-
-@FindBy(id = "username") // или любой другой уникальный элемент на странице логина
-private WebElement usernameInput;
-
-public boolean isLoginPageDisplayed() {
-    return wait.until(ExpectedConditions.visibilityOf(usernameInput)).isDisplayed();
-}
-
-
+Was ist ein Dokumentenmanagementsystem (DMS) in einem Unternehmen?
+Worin besteht der Unterschied zwischen Papier- und elektronischem Dokumentenmanagement?
+Welche Dokumententypen werden im Unternehmensalltag am häufigsten verwendet?
+Welche Arten von Dokumenten sind rechtlich relevant?
+Welche Risiken sind mit manuellem Dokumentenmanagement verbunden?
+Warum stellen Unternehmen auf elektronische Dokumentenverwaltung um?
+Welche Phasen umfasst der Lebenszyklus eines Dokuments?
+Wer ist in einem Unternehmen für die Verwaltung von Dokumenten zuständig?
+Was versteht man unter Schriftgutverwaltung?
+Welche Abteilungen sind am stärksten in den Dokumentenfluss eingebunden?
+Wie werden eingehende und ausgehende Dokumente organisiert?
+Was bedeutet die Registrierung eines Dokuments und wozu dient sie?
+Welche Pflichtangaben müssen in einem offiziellen Dokument enthalten sein?
+Worin besteht der Unterschied zwischen einem Vermerk und einem Beschluss?
+Was ist ein Aktenplan?
+Welche Regeln gelten für die Aufbewahrung von Dokumenten?
+Wie werden Dokumente nach Aufbewahrungsfrist klassifiziert?
+Was versteht man unter Archivgut?
+Welche Dokumente werden archiviert und welche vernichtet?
+Wie wird die Vertraulichkeit von Dokumenten gewährleistet?
+Welche Dokumente müssen zwingend auf Papier vorliegen?
+Welche Schutzmaßnahmen gibt es in der elektronischen Dokumentenverwaltung?
+Was ist eine elektronische Signatur?
+Wie überprüft man die Echtheit eines elektronischen Dokuments?
+Welche Formate werden für elektronische Dokumente verwendet?
+Wie funktioniert die digitale Freigabe von Dokumenten?
+Was ist der Unterschied zwischen interner und externer Korrespondenz?
+Welche Systeme zur Dokumentenautomatisierung sind verbreitet?
+Was sind die Vorteile von Systemen wie DocFlow, SharePoint oder SAP DMS?
+Welche Funktionen sollte ein gutes Dokumentenmanagementsystem haben?
+Was sind Freigabeworkflows für Dokumente?
+Wie werden Zugriffsrechte auf Dokumente geregelt?
+Wie richtet man Benutzerrollen in einem DMS ein?
+Wie verfolgt man den Bearbeitungsstatus eines Dokuments?
+Was bedeutet Fristenüberwachung bei Dokumenten?
+Wie sieht ein Dokumentenregister aus?
+Wie wird ein Vorgesetztenvermerk dokumentiert?
+Was ist eine grafische Darstellung des Freigabeprozesses?
+Wie wird ein elektronisches Archiv aufgebaut?
+Welche Anforderungen gibt es an das Backup von Dokumenten?
+Welche Dokumente müssen dauerhaft aufbewahrt werden?
+Was ist die Archivbewertung von Dokumenten?
+Was sind Akten mit dauerhafter und befristeter Aufbewahrung?
+Welche Rolle spielt die Abteilung für Dokumentenmanagement?
+Was sind ISO-Normen für Dokumentenmanagement?
+Welche Anforderungen gelten für Dokumentenmetadaten?
+Was ist eine Dokumentenkennung?
+Wie automatisiert man die Registrierung von Eingangsbriefen?
+Wie wird der Umgang mit Verträgen im DMS geregelt?
+Wie wird die rechtliche Gültigkeit von elektronischen Verträgen sichergestellt?
+Wie überwacht man Antwortfristen auf Schreiben?
+Wie kontrolliert man Fristen für die Umsetzung von Anweisungen?
+Was ist OCR und wie wird es eingesetzt?
+Was ist der Unterschied zwischen Original und Kopie im digitalen Kontext?
+Wie verwaltet ein System Dokumentenversionen?
+Was ist eine Dokumentenrevision?
+Wie wird die Einhaltung von Dokumentenrichtlinien überprüft?
+Was tun bei Verlust eines Dokuments?
+Welche Regelungen gelten bei Ausscheiden eines Mitarbeiters im Hinblick auf DMS?
+Wie werden Reisedokumente erfasst?
+Was bedeutet Vollmachtsverwaltung im Unternehmen?
+Wie wird ein Verzeichnis von Dienstanweisungen geführt?
+Wie erfolgt der Dokumententransfer zwischen Abteilungen?
+Was tun bei Unstimmigkeiten im Dokumentinhalt?
+Wie dokumentiert man E-Mail-Freigaben?
+Wie geht man mit veralteten Formularen um?
+Wie wird ein Dokumenten-Audit durchgeführt?
+Welche Berichte kann ein DMS erzeugen?
+Was umfasst die Analyse des Dokumentenflusses?
+Welche KPIs gelten für Dokumentenprozesse?
+Wie beschleunigt man Genehmigungen ohne Regelverstoß?
+Wie funktioniert der Austausch mit externen Partnern?
+Wie läuft die Einführung eines DMS ab?
+Welche Probleme treten bei der Umstellung auf digitale Prozesse auf?
+Wie wird das Personal für das DMS geschult?
+Wie gelingt die Integration mit anderen Systemen (CRM, ERP)?
+Wie oft werden Vorlagen und Formulare aktualisiert?
+Was umfasst die Informationssicherheit im DMS?
+Was tun bei Serverausfällen?
+Wie erkennt man Störungen im Dokumentenfluss?
+Was ist ein Audit-Log?
+Wie verhindert man das Hochladen unsignierter Dokumente?
+Wie werden Entwürfe verwaltet?
+Wie werden Dokumente aus Vorlagen erstellt?
+Wie erstellt man Standardbriefe und -beschlüsse?
+Wie sucht man Dokumente nach Inhalt?
+Wie sucht man Dokumente nach Autor oder Datum?
+Welche Rechte hat ein Sachbearbeiter?
+Wie delegiert man Zugriffsrechte?
+Was geschieht mit Benutzerrechten nach dem Ausscheiden?
+Wie erfolgt die Synchronisation mit Active Directory?
+Was ist ein Signatur-Panel?
+Wie läuft ein Genehmigungsprozess für Budgets?
+Wie sieht die Änderungsverfolgung aus?
+Wie wird das Team über Dokumentenänderungen informiert?
+Wie arbeiten mehrere Nutzer gleichzeitig an einem Dokument?
+Wie erkennt man Fehler beim Dokumentenversand?
+Wie wird ausgehende Korrespondenz erfasst?
+Wie werden Dokumente von Auftragnehmern verarbeitet?
+Wann gilt ein Dokument als abgeschlossen?
+Wie funktioniert ein mehrsprachiger Dokumentenfluss?
+Wie läuft die Übersetzung von Dokumenten ab?
+Wie kann Künstliche Intelligenz im Dokumentenmanagement helfen?
+Welche Zukunft hat die Digitalisierung von Dokumentenprozessen?
