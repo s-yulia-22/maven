@@ -1,64 +1,41 @@
-Feature: Smoke Test for Knowledge Navigator
+@FindBy(css = "a[role='button'][data-bs-toggle='dropdown']") // кнопка с аватаркой
+private WebElement userMenuButton;
 
-  As a user
-  I want to verify that the core functionalities of Knowledge Navigator work correctly
-  So that I can access, interact with, and log out of the system successfully
+@FindBy(xpath = "//a[text()='Ausloggen']") // кнопка Ausloggen
+private WebElement logoutButton;
 
-  @smoke-test
-  Scenario: Successful login with valid credentials
-    Given the user opens the login page
-    When the user clicks the "Mit Keycloak anmelden" button
-    And the user clicks the "Fortfahren" button
-    And the user enters a valid username
-    And the user enters a valid password
-    And the user confirms the stay signed in prompt
-    Then the user should see the Knowledge Navigator homepage
+public void clickUserMenu() {
+    wait.until(ExpectedConditions.elementToBeClickable(userMenuButton)).click();
+}
 
-  @smoke-test
-  Scenario: Login fails with invalid username
-    Given the user opens the login page
-    When the user clicks the "Mit Keycloak anmelden" button
-    And the user clicks the "Fortfahren" button
-    And the user enters an invalid username
-    And the user enters a valid password
-    Then the user should see an error message about invalid credentials
+public void clickLogout(String buttonLabel) {
+    wait.until(ExpectedConditions.elementToBeClickable(logoutButton)).click();
+}
+//////////////////
 
-  @smoke-test
-  Scenario: Login fails with invalid password
-    Given the user opens the login page
-    When the user clicks the "Mit Keycloak anmelden" button
-    And the user clicks the "Fortfahren" button
-    And the user enters a valid username
-    And the user enters an invalid password
-    Then the user should see an error message about invalid credentials
+@When("the user opens the user menu")
+public void openUserMenu() {
+    homePage.clickUserMenu();
+}
 
-  @smoke-test
-  Scenario: Successful logout
-    Given the user is logged into the system
-    When the user clicks on the profile dropdown
-    And the user clicks on the "Ausloggen" option
-    Then the user should be redirected to the login page
+@And("the user clicks the {string} button")
+public void clickLogoutButton(String buttonLabel) {
+    homePage.clickLogout(buttonLabel);
+}
 
-  @smoke-test
-  Scenario: Application "Bilderzeuger" responds to prompts
-    Given the user is logged into the system
-    When the user opens the app "Bilderzeuger"
-    Then the user sends 2 test prompts and verifies responses
+@Then("the user should see the login page")
+public void verifyRedirectToLogin() {
+    Assert.assertTrue(loginPage.isLoginPageDisplayed());
+}
 
-  @smoke-test
-  Scenario: Application "Einfacher Assistent" responds to prompts
-    Given the user is logged into the system
-    When the user opens the app "Einfacher Assistent"
-    Then the user sends 2 test prompts and verifies responses
 
-  @smoke-test
-  Scenario: Application "RoXtra Test" responds to prompts
-    Given the user is logged into the system
-    When the user opens the app "RoXtra Test"
-    Then the user sends 2 test prompts and verifies responses
+//////////////////
 
-  @smoke-test
-  Scenario: Application "Transcriber" responds to prompts
-    Given the user is logged into the system
-    When the user opens the app "Transcriber"
-    Then the user sends 2 test prompts and verifies responses
+@FindBy(id = "username") // или любой другой уникальный элемент на странице логина
+private WebElement usernameInput;
+
+public boolean isLoginPageDisplayed() {
+    return wait.until(ExpectedConditions.visibilityOf(usernameInput)).isDisplayed();
+}
+
+
