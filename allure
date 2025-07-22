@@ -1,10 +1,77 @@
-<dependency>
-    <groupId>org.slf4j</groupId>
-    <artifactId>slf4j-log4j12</artifactId>
-    <version>1.7.30</version>
-</dependency>
-<dependency>
-    <groupId>log4j</groupId>
-    <artifactId>log4j</artifactId>
-    <version>1.2.17</version>
-</dependency>
+# UI-Testautomatisierungsframework
+
+## 📁 Projektstruktur
+
+- `pages/` – Page Object Klassen (`LoginPage`, `HomePage`, `TextAssistantPage`, etc.)
+- `hooks/` – Initialisierung von Hooks für Tests
+- `runners/` – Enthält `TestRunner` für den Start der Tests
+- `services/` – Services wie `PromptService` zur Abfrageverarbeitung
+- `step_definitions/` – Cucumber Step-Definitionen
+- `utils/` – Hilfsklassen (`WaitUtils`, `ConfigReader`, `AllureReporter`, etc.)
+- `resources/`
+  - `features/` – Enthält `.feature`-Dateien (`smoke.feature`, `textassistant.feature`)
+  - `config.properties` – Testkonfiguration (URL, Logins)
+  - `prompts.txt`, `prompts_old.txt` – Liste der Prompts
+  - `allure.properties` – Konfiguration für Allure Reports
+
+## ⚙️ Technologien
+
+- Programmiersprache: Java
+- Testframework: Selenium + Cucumber (BDD)
+- Reporting: Allure
+- Logging: SLF4J + Logback
+- Build Tool: Maven
+
+## 🧪 Tests
+
+- **Smoke Tests**: Schnelle Prüfung von Login, Logout, App-Verfügbarkeit
+- **Performance Tests**: Messen der Antwortzeit für Prompts
+
+## ▶️ Tests ausführen
+
+```bash
+mvn clean test
+```
+
+Die Testergebnisse werden im `target/allure-results` gespeichert und können mit folgendem Befehl angezeigt werden:
+
+```bash
+allure serve target/allure-results
+```
+
+## 🔐 Konfiguration
+
+- Zugangsdaten befinden sich in `config.properties`
+- Prompts sind in `prompts.txt` gespeichert
+- Kritische Antwortzeit: 3 Minuten (wird im Report hervorgehoben)
+
+## 🧑‍💻 Beitrag leisten
+
+1. Forke das Repository
+2. Erstelle einen Branch: `git checkout -b feature/mein-feature`
+3. Führe Änderungen durch + schreibe ggf. neue Tests
+4. Sende einen Pull Request
+
+## 📝 README.md Speicherort
+
+`README.md` befindet sich im Hauptverzeichnis des Projekts – **auf derselben Ebene wie `pom.xml`**.
+
+## 📄 Logback-Konfiguration
+
+Datei: `logback.xml`  
+Pfad: `src/main/resources/logback.xml`
+
+Beispiel:
+
+```xml
+<configuration>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <root level="info">
+        <appender-ref ref="STDOUT" />
+    </root>
+</configuration>
+```
